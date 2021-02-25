@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+<table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>SAP ID</th>
+            <th>Contact</th>
+            <th class="text-center">Action</th>
+        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userArray; let j=index">
+            <td>{{user.firstName}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.sapID}}</td>
+            <td>{{user.contact}}</td>
+            <td id='edit' class="text-center"><button type="button" class="btn btn-info" (click)="editData(template)"><span class="glyphicon glyphicon-edit"></span>Edit</button>
+            <form><ng-template #template>
+                <div class="modal-body form-group">
+                    <input type='text' class="form-control" [(ngModel)]='user.firstName' placeholder='Name'[ngModelOptions]="{standalone: true}"/>
+                    <input type='number' class="form-control" [(ngModel)]='user.age' placeholder='Age' [ngModelOptions]="{standalone: true}"/>
+                    <input type='number'class="form-control"  [(ngModel)]='user.sapID' placeholder='SAP ID' [ngModelOptions]="{standalone: true}"/>
+                    <input type='email' class="form-control" [(ngModel)]='user.email' placeholder='Email' [ngModelOptions]="{standalone: true}"/>
+                    
+                    <input type='number'class="form-control"  [(ngModel)]='user.contact' placeholder='Contact' [ngModelOptions]="{standalone: true}"/>
+                    <input type='text' class="form-control" [(ngModel)]='user.location' placeholder='Location' [ngModelOptions]="{standalone: true}"/>
+                    <button class="btn btn-primary" (click)='UpdateData(user)'>Update Data</button>
+              
+                </div>
+              </ng-template></form></td>
+            <td id='del'><p-toast></p-toast>
+                 <p-confirmPopup></p-confirmPopup>
+                  <button class="btn btn-primary" (click)="confirm($event,user.id)" pButton label="DEL"></button></td>
+         </tr>
+    </tbody>
+</table>
+</div></div>
